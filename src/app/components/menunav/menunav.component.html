@@ -1,0 +1,28 @@
+<div class="container-fluid" style="height: 100vh;">
+    <div class="row" style="height: 100%;">
+      <nav class="col-md-3 col-lg-2 d-md-block sidebar" style="background-color: #3c4b64; padding-top: 80px;">
+        <div class="position-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" routerLink="/admin" style="color: white;">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/pos" style="color: white;">Punto de venta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/clientes" style="color: white;">Clientes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/ventas" style="color: white;">Ventas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/rubros" style="color: white;">Rubros</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="padding-top: 80px;">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>

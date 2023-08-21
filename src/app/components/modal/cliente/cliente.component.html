@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h4 class="modal-title">Cliente</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+<div class="modal-body">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Enter name">
+        <div *ngIf="form.get('nombre').invalid && form.get('nombre').touched" class="text-danger">
+            <div *ngIf="form.get('nombre').hasError('required')">Name is required.</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cuit</label>
+        <input type="text" class="form-control" formControlName="cuit" placeholder="Enter ciut">
+        <div *ngIf="form.get('cuit').invalid && form.get('cuit').touched" class="text-danger">
+            <div *ngIf="form.get('cuit').hasError('required')">Cuit is required.</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" formControlName="email" placeholder="Enter email">
+        <div *ngIf="form.get('email').invalid && form.get('email').touched" class="text-danger">
+            <div *ngIf="form.get('email').hasError('email')">Error email.</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Domicilio</label>
+        <input type="text" class="form-control" formControlName="domicilio" placeholder="Enter address">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Telefono</label>
+        <input type="text" class="form-control"  formControlName="telefono" placeholder="Enter phone number">
+    </div>
+    
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+</div>
+</form>
+

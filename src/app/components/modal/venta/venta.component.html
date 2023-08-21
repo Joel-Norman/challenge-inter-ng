@@ -1,0 +1,67 @@
+<div class="container" style="padding: 2rem;">
+    <div class="row">
+        <div class="col">
+            <label class="modal-label">Cliente: <strong>{{_ventaService.item.cliente.nombre}}</strong></label>
+        </div>
+        <div class="col">
+            <label class="modal-label">Cuit:  <strong>{{_ventaService.item.cliente.cuit}}</strong></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="modal-label">Telefono:  <strong>{{_ventaService.item.cliente.telefono}}</strong></label>
+        </div>
+        <div class="col">
+            <label class="modal-label">Email:  <strong>{{_ventaService.item.cliente.email}}</strong></label>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="modal-label">Direccion:  <strong>{{_ventaService.item.cliente.direccion}}</strong></label>
+        </div>
+        
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+        <div class="col">
+            <label class="modal-label">Fecha de Venta:  <strong>{{_ventaService.item.fecha |date}}</strong></label>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="modal-label">Observaciones:  <strong>{{_ventaService.item.observaciones}}</strong></label>
+        </div>
+        
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+        
+        <div class="col">
+            <label for="" class="modal-label">Productos</label>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of _ventaService.item.items">
+                        <td>{{ item.producto.nombre  }}</td>
+                        <td>{{ item.cantidad  }}</td>
+                        <td>{{ item.precio}}</td>
+                        <td>{{ item.precio*item.cantidad  }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Total:</td>
+                        <td>{{_ventaService.item.importe_total}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

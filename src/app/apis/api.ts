@@ -1,0 +1,1 @@
+export const url='https://interneg.ddns.net/api-challenge'

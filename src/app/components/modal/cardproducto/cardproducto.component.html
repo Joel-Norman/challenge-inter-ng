@@ -1,0 +1,27 @@
+<div class="container" style="padding: 2rem;">
+    <div class="row">
+        <div class="col">
+            <label class="modal-label">Producto: <strong>{{productoService.item.nombre}}</strong></label>
+        </div>
+        <div class="col">
+            <label class="modal-label">Codigo:  <strong>{{productoService.item.codigo}}</strong></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="modal-label">Precio:  <strong>{{productoService.item.precio}}</strong></label>
+        </div>
+        
+    </div>
+
+    <div class="divider"></div>
+    <div class="row">
+        <div class="col" *ngIf="productoService.item.rubro">
+            <label class="modal-label">Rubro:  <strong>{{productoService.item.rubro.nombre}}</strong></label>
+        </div>
+        <div class="col" *ngIf="productoService.item.rubro">
+            <label class="modal-label">Codigo Rubro:  <strong>{{productoService.item.rubro.codigo}}</strong></label>
+        </div>
+    </div>
+    
+</div>

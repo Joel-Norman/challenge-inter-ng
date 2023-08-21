@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title">Modal Rubro</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+<div class="modal-body">
+    
+        <div class="mb-3">
+          <label for="codigo" class="form-label">Codigo</label>
+          <input type="text" class="form-control" id="codigo" placeholder="Enter code" formControlName="codigo">
+          <div *ngIf="form.get('codigo').invalid && form.get('codigo').touched" class="text-danger">
+              <div *ngIf="form.get('codigo').hasError('required')">Code is required.</div>
+            </div>
+      </div>
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Enter name">
+        <div *ngIf="form.get('nombre').invalid && form.get('nombre').touched" class="text-danger">
+          <div *ngIf="form.get('nombre').hasError('required')">Name is required.</div>
+        </div>
+        </div>
+        
+      
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+</div>
+</form>

@@ -1,0 +1,3 @@
+<ngb-alert class="alert" #selfClosingAlert *ngIf="messageService.message" [type]="messageService.type" [dismissible]="false" (closed)="messageService.message = ''"
+	>{{ messageService.message }}
+</ngb-alert>

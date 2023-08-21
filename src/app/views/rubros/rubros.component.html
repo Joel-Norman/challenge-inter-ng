@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <input class="form-control" type="text" placeholder="buscar" aria-label=".form-control-lg example" (input)="onInput($event)">
+      </div>
+      <div class="col" style="text-align: end;">
+        
+        <button class="btn btn-primary" (click)="openVerticallyCentered(content)">
+            Nuevo
+        </button>
+		
+      </div>
+      
+    </div>
+  </div>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Codigo</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of dataTable">
+			<td>{{ item.codigo }}</td>
+			<td>{{ item.nombre  }}</td>
+			<td>
+				<button type="button" class="btn btn-outline-info" style="border-style: hidden;"(click)="show(content,item)"><i class="bi bi-info-circle-fill"></i></button>
+				<button type="button" class="btn btn-outline-warning" style="border-style: hidden;"(click)="edit(content,item)"><i class="bi bi-pencil-fill"></i></button>
+				<button type="button" class="btn btn-outline-danger" style="border-style: hidden;"(click)="delete(item)"><i class="bi bi-trash3-fill"></i></button>
+				
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+	<ngb-pagination
+		[collectionSize]="collectionSize"
+		[(page)]="page"
+		[pageSize]="pageSize"
+		(pageChange)="refresh()"
+	>
+	</ngb-pagination>
+
+	<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refresh()">
+		<option [ngValue]="5">5 items per page</option>
+		<option [ngValue]="10">10 items per page</option>
+		<option [ngValue]="15">15 items per page</option>
+	</select>
+</div>
+
+<ng-template #content let-modal>
+	<modal-rubro [modal]="modal"></modal-rubro>
+</ng-template>
+<message-alert></message-alert>

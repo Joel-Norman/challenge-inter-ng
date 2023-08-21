@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h4 class="modal-title">Producto</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <div class="modal-body">
+        <div class="mb-3">
+            <label for="codigo" class="form-label">Codigo</label>
+            <input type="text" class="form-control" id="codigo"  formControlName="codigo" placeholder="Enter code" >
+            <div *ngIf="form.get('codigo').invalid && form.get('codigo').touched" class="text-danger">
+                <div *ngIf="form.get('codigo').hasError('required')">Code is required.</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Enter name">
+            <div *ngIf="form.get('nombre').invalid && form.get('nombre').touched" class="text-danger">
+              <div *ngIf="form.get('nombre').hasError('required')">Name is required.</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="text" class="form-control" id="precio" formControlName="precio" placeholder="Enter price">
+            <div *ngIf="form.get('precio').invalid && form.get('precio').touched" class="text-danger">
+              <div *ngIf="form.get('precio').hasError('required')">Price is required.</div>
+              <div *ngIf="form.get('precio').hasError('pattern')">
+                El valor debe ser un número decimal con hasta 2 decimales.
+              </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label  class="col-xs-3 col-sm-auto col-form-label">Rubro</label>
+	        <div class="col">
+		        <input formControlName="rubro" type="text" class="form-control" [(ngModel)]="selectedRubro" [ngbTypeahead]="search"
+			        [inputFormatter]="formatter"
+			        [resultFormatter]="formatter"
+			        [selectOnExact]="true" 
+                    placeholder="Enter rubro"/>
+	        </div>
+        </div> 
+          
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+    </form>

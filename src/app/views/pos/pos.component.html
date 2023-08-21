@@ -1,0 +1,100 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <input class="form-control" type="text" placeholder="buscar"
+            [(ngModel)]="selectedProducto" 
+            [ngbTypeahead]="searchProducto"
+			[inputFormatter]="formatter"
+			[resultFormatter]="formatter"
+			[selectOnExact]="true"
+            (selectItem)="onOptionSelected($event)" 
+        >
+      </div>
+      <div class="col" style="text-align: end;">
+        <button class="btn btn-primary" (click)="saveNew()">
+            Nueva venta
+        </button>
+      </div>
+      
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Cant</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Precio unitario</th>
+                        <th scope="col">Subtotal</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of dataTable">
+                        <td><input type="number" min="1" class="form-control" style="width: 5rem;" [(ngModel)]="item.cantidad"></td>
+                        <td>{{ item.nombre}}</td>
+                        <td>{{ item.precio}}</td>
+                        <td>{{item.cantidad*item.precio | number}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" style="border-style: hidden;" (click)="delete(item)"><i class="bi bi-trash3-fill"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: end;">Total</td>
+                        
+                        <td>{{sumTotal()}}</td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+                </tbody>
+            </table><div *ngIf="!listValid" class="text-danger">
+                Lista de productos no puede estar vacia!!
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <label for="codigo" class="form-label">Cliente</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" [(ngModel)]="selectedCliente" [ngbTypeahead]="searchCliente"
+			        [inputFormatter]="formatter"
+			        [resultFormatter]="formatter"
+			        [selectOnExact]="true" 
+                    placeholder="Enter client"/>
+                <button class="btn btn-outline-secondary" (click)="deleteClient()"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <div *ngIf="!clienteValid" class="text-danger">
+                Seleccione un cliente!!
+              </div>
+            <label for="codigo" class="form-label">Fecha</label>
+            <div class="input-group mb-3">
+                <input
+                    class="form-control"
+                    placeholder="dd/mm/yyyy"
+                    name="dp"
+                    [(ngModel)]="dateModel"
+                    ngbDatepicker
+                    #d="ngbDatepicker"
+                    
+                />
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="bi bi-calendar3"></i></button>
+                
+            </div>
+            <div *ngIf="!dateValid" class="text-danger">
+                Formato de fecha inválido (dd/mm/aaaa)
+              </div>
+            <div class="mb-3">
+                <label for="codigo" class="form-label">Descripcion</label>
+                <textarea class="form-control" aria-label="With textarea" [(ngModel)]="observacion"></textarea>
+            </div>   
+        </div>
+    </div>
+</div>
+
+
+
+
+<ng-template #content let-modal>
+	<modal-newproduct [modal]="modal"></modal-newproduct>
+</ng-template>
+
+<message-alert></message-alert>
